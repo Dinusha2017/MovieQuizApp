@@ -15,85 +15,102 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/questionNoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
+            android:layout_margin="8dp"
             android:gravity="right"
-            android:text="1" />
+            android:textSize="22dp" />   <!-- android:text="1" -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="/10" />
+            android:layout_margin="8dp"
+            android:text="/10"
+            android:textSize="22dp" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="15dp"
+        android:layout_weight="2"
+        android:padding="12dp"
         android:gravity="center"
-        android:text="What is the name of the actor who acts as Harry Potter in harry potter and the prisoner of Askaban?"
+        android:text="Question"
         android:textSize="25dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/answer1"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:padding="20dp"
+            android:padding="15dp"
             android:layout_margin="15dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textSize="15dp"
+            android:onClick="onClickAnswer1" />
 
         <Button
+            android:id="@+id/answer2"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:padding="20dp"
+            android:padding="15dp"
             android:layout_margin="15dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textSize="15dp"
+            android:onClick="onClickAnswer2" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/answer3"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:padding="20dp"
+            android:padding="15dp"
             android:layout_margin="15dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textSize="15dp"
+            android:onClick="onClickAnswer3" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/answer4"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
-            android:padding="20dp"
+            android:padding="15dp"
             android:layout_margin="15dp"
-            android:text="Button" />
+            android:text="Button"
+            android:textSize="15dp"
+            android:onClick="onClickAnswer4" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0.1"
         android:layout_margin="20dp"
         android:layout_gravity="right"
-        android:text="Next" />    <!-- TextView -->
+        android:text="Next"
+        android:onClick="onClickNext" />    <!-- TextView -->
 </LinearLayout>
