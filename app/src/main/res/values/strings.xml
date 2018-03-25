@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Movie Quiz App</string>
+    <string name="out_of_ten">/10</string>
+    <string name="next_btn_txt">Next</string>
+    <string name="result_activity_title">Result</string>
+    <string name="continue_btn_txt">Continue</string>
 </resources>

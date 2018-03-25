@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ctse.sliit.moviequizapp.controllers.QuizLevels">
+
+    <LinearLayout
+        android:layout_width="391dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:text="Select Where You Stopped"
+            android:textSize="25dp"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="430dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="55dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:id="@+id/buttonLevel1"
+                    android:layout_width="125dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:text="level 1" />
+
+                <Button
+                    android:id="@+id/buttonLevel2"
+                    android:layout_width="125dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:text="Level 2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:id="@+id/buttonLevel3"
+                    android:layout_width="125dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:text="Level 3" />
+
+                <Button
+                    android:id="@+id/buttonLevel4"
+                    android:layout_width="125dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:text="Level 4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:paddingBottom="5dp">
+
+                <Button
+                    android:id="@+id/buttonLevel5"
+                    android:layout_width="125dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:text="Level 5" />
+
+                <Button
+                    android:id="@+id/buttonLevel6"
+                    android:layout_width="125dp"
+                    android:layout_height="70dp"
+                    android:layout_weight="1"
+                    android:textSize="25dp"
+                    android:text="Level 6" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/buttonReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"
+                android:text="Reset" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
