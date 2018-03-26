@@ -2,13 +2,10 @@ package com.ctse.sliit.moviequizapp.controllers;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import com.ctse.sliit.moviequizapp.R;
@@ -20,10 +17,12 @@ import java.util.List;
 public class QuizActivity extends AppCompatActivity{
 
     private int currentDBQuestion = 0;
-    private int currentQuestionNo = 0;
+    private int currentQuestionNo = 1;
     private int noOfCorrectAnswers = 0;
 
     private String userSelectedAnswer = "";
+
+    private List<Integer> userAnswers = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +34,14 @@ public class QuizActivity extends AppCompatActivity{
 
         currentDBQuestion = Integer.parseInt(Integer.toString(selectedQuizSet) + "1");
 
-        updateUIWithNextQuestion();
+        updateUIWithNextQuestion(false);
     }
 
     /***
-     * Update the UI with the new question and its answers when stepping to the quiz first and when next button is clicked later
+     * Update the UI with the new question and its answers when stepping to the quiz first and when the next and back buttons are clicked later
      */
-    private void updateUIWithNextQuestion(){
+    private void updateUIWithNextQuestion(boolean isBackButton){
         //set current Question No
-        currentQuestionNo = currentQuestionNo + 1;
         ((TextView)findViewById(R.id.questionNoTextView)).setText(Integer.toString(currentQuestionNo));
 
         DBHelper dbHelper = new DBHelper(this);
@@ -52,31 +50,81 @@ public class QuizActivity extends AppCompatActivity{
         String question = dbHelper.getQuestion(currentDBQuestion);
         ((TextView)findViewById(R.id.questionTextView)).setText(question);
 
-        List<String> answers = new ArrayList<>();
-        answers = dbHelper.getAllAnswers(currentDBQuestion);
+        List<String> answers = dbHelper.getAllAnswers(currentDBQuestion);
 
         //set answers to buttons
         Button answer1 = findViewById(R.id.answer1);
-        answer1.setBackgroundColor(Color.GRAY);
         answer1.setText(answers.get(0));
 
         Button answer2 = findViewById(R.id.answer2);
-        answer2.setBackgroundColor(Color.GRAY);
         answer2.setText(answers.get(1));
 
         Button answer3 = findViewById(R.id.answer3);
-        answer3.setBackgroundColor(Color.GRAY);
         answer3.setText(answers.get(2));
 
         Button answer4 = findViewById(R.id.answer4);
-        answer4.setBackgroundColor(Color.GRAY);
         answer4.setText(answers.get(3));
 
         Button nextBtn = findViewById(R.id.nextButton);
-        nextBtn.setEnabled(false);
+
+        Button backBtn = findViewById(R.id.backButton);
 
         if (currentQuestionNo == 10){
             nextBtn.setText("VIEW RESULTS");
+        }
+        else if(currentQuestionNo == 1){
+            backBtn.setEnabled(false);
+            nextBtn.setText("NEXT");
+        }
+        else {
+            backBtn.setEnabled(true);
+            nextBtn.setText("NEXT");
+        }
+
+        if(userAnswers.size() >= currentQuestionNo){
+            int buttonNo = userAnswers.get(currentQuestionNo-1);
+
+            if(buttonNo == 1){
+                answer1.setBackgroundColor(Color.YELLOW);
+                answer2.setBackgroundColor(Color.GRAY);
+                answer3.setBackgroundColor(Color.GRAY);
+                answer4.setBackgroundColor(Color.GRAY);
+                userSelectedAnswer = answer1.getText().toString();
+            }
+            else if(buttonNo == 2){
+                answer2.setBackgroundColor(Color.YELLOW);
+                answer1.setBackgroundColor(Color.GRAY);
+                answer3.setBackgroundColor(Color.GRAY);
+                answer4.setBackgroundColor(Color.GRAY);
+                userSelectedAnswer = answer2.getText().toString();
+            }
+            else if(buttonNo == 3){
+                answer3.setBackgroundColor(Color.YELLOW);
+                answer1.setBackgroundColor(Color.GRAY);
+                answer2.setBackgroundColor(Color.GRAY);
+                answer4.setBackgroundColor(Color.GRAY);
+                userSelectedAnswer = answer3.getText().toString();
+            }
+            else if(buttonNo == 4){
+                answer4.setBackgroundColor(Color.YELLOW);
+                answer1.setBackgroundColor(Color.GRAY);
+                answer2.setBackgroundColor(Color.GRAY);
+                answer3.setBackgroundColor(Color.GRAY);
+                userSelectedAnswer = answer4.getText().toString();
+            }
+
+            if (isBackButton && checkAnswer()){
+                noOfCorrectAnswers--;
+            }
+
+            nextBtn.setEnabled(true);
+        }
+        else{
+            answer1.setBackgroundColor(Color.GRAY);
+            answer2.setBackgroundColor(Color.GRAY);
+            answer3.setBackgroundColor(Color.GRAY);
+            answer4.setBackgroundColor(Color.GRAY);
+            nextBtn.setEnabled(false);
         }
     }
 
@@ -93,6 +141,7 @@ public class QuizActivity extends AppCompatActivity{
         ((Button)findViewById(R.id.answer3)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.answer4)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
+        storeUserAnswerButton(1);
     }
 
     /***
@@ -108,6 +157,7 @@ public class QuizActivity extends AppCompatActivity{
         ((Button)findViewById(R.id.answer3)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.answer4)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
+        storeUserAnswerButton(2);
     }
 
     /***
@@ -123,6 +173,7 @@ public class QuizActivity extends AppCompatActivity{
         ((Button)findViewById(R.id.answer2)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.answer4)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
+        storeUserAnswerButton(3);
     }
 
     /***
@@ -138,6 +189,7 @@ public class QuizActivity extends AppCompatActivity{
         ((Button)findViewById(R.id.answer2)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.answer3)).setBackgroundColor(Color.GRAY);
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
+        storeUserAnswerButton(4);
     }
 
     /***
@@ -162,8 +214,9 @@ public class QuizActivity extends AppCompatActivity{
         if (currentQuestionNo <= 9){
             userSelectedAnswer = "";
             currentDBQuestion++;
+            currentQuestionNo++;
 
-            updateUIWithNextQuestion();
+            updateUIWithNextQuestion(false);
         }
     }
 
@@ -171,12 +224,36 @@ public class QuizActivity extends AppCompatActivity{
      * checks whether the answer selected by the user is correct
      * @return true or false
      */
-    public Boolean checkAnswer(){
+    public boolean checkAnswer(){
         DBHelper dbHelper = new DBHelper(this);
         String correctAnswer = dbHelper.getCorrectAnswer(currentDBQuestion);
         if (userSelectedAnswer.equals(correctAnswer)){
             return true;
         }
         return false;
+    }
+
+    /***
+     * Maintains the answer(button selected) provided by the user for each question in the list named userAnswers
+     * @param selectedBtn
+     */
+    public void storeUserAnswerButton(int selectedBtn){
+        if(userAnswers.size() >= currentQuestionNo){
+            userAnswers.set(currentQuestionNo - 1, selectedBtn);
+        }
+        else{
+            userAnswers.add(selectedBtn);
+        }
+    }
+
+    /***
+     * onClick method call added to the button in the xml file
+     * Handles onClick event action of the Back Button
+     * @param view
+     */
+    public void onClickBack(View view) {
+        currentDBQuestion--;
+        currentQuestionNo--;
+        updateUIWithNextQuestion(true);
     }
 }

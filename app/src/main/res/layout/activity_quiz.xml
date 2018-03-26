@@ -104,13 +104,31 @@
             android:onClick="onClickAnswer4" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:layout_margin="20dp"
-        android:layout_gravity="right"
-        android:text="@string/next_btn_txt"
-        android:onClick="onClickNext" />    <!-- TextView -->
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_margin="20dp"
+            android:layout_gravity="left"
+            android:text="@string/back_btn_txt"
+            android:onClick="onClickBack" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_margin="20dp"
+            android:layout_gravity="right"
+            android:text="@string/next_btn_txt"
+            android:onClick="onClickNext" />    <!-- TextView -->
+
+    </LinearLayout>
+
 </LinearLayout>
