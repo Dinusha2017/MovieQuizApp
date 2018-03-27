@@ -6,5 +6,7 @@
     <string name="continue_btn_txt">Continue</string>
     <string name="back_btn_txt">Back</string>
     <string name="shared_pref_filename">level-score-store</string>
-    <string name="pref_key_score">highestScore</string>
+    <string name="pref_key_score">highScore</string>
+    <string name="pref_key_level">lastAttemptedLevel</string>
+    <string name="defaultLevelAndScore">0</string>
 </resources>

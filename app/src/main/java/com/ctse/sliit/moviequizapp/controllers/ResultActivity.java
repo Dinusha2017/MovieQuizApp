@@ -17,15 +17,22 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        //get mark scored by the user
+        //get quiz set selected by the user and the mark scored by the user
+        int selectedQuizSet = getIntent().getExtras().getInt("selectedQuizSet");
         int markScored = getIntent().getExtras().getInt("markScored");
         ((TextView)findViewById(R.id.scoreTextView)).setText(Integer.toString(markScored));
 
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(this);
 
+        //store the high score of the last attempted level using Shared Preferences to be used later
         SharedPreferences preferences = getSharedPreferences(getResources().getString(R.string.shared_pref_filename), MODE_PRIVATE);
-        preferences.edit().putInt(getResources().getString(R.string.pref_key_score), markScored).apply();
+        int lastAttemptedLevel = preferences.getInt(getResources().getString(R.string.pref_key_level),
+                                                    Integer.parseInt(getResources().getString(R.string.defaultLevelAndScore)));
+
+        if (selectedQuizSet == lastAttemptedLevel){
+            preferences.edit().putInt(getResources().getString(R.string.pref_key_score), markScored).apply();
+        }
     }
 
     @Override

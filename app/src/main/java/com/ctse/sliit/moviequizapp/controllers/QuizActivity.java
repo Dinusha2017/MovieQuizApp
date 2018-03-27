@@ -16,6 +16,8 @@ import java.util.List;
 
 public class QuizActivity extends AppCompatActivity{
 
+    private int selectedQuizSet = 0;
+
     private int currentDBQuestion = 0;
     private int currentQuestionNo = 1;
     private int noOfCorrectAnswers = 0;
@@ -30,7 +32,7 @@ public class QuizActivity extends AppCompatActivity{
         setContentView(R.layout.activity_quiz);
 
         //get quiz set selected by user
-        int selectedQuizSet = getIntent().getExtras().getInt("selectedQuizSet");
+        selectedQuizSet = getIntent().getExtras().getInt("selectedQuizSet");
 
         currentDBQuestion = Integer.parseInt(Integer.toString(selectedQuizSet) + "1");
 
@@ -206,6 +208,7 @@ public class QuizActivity extends AppCompatActivity{
 
         if (btn.getText() == "VIEW RESULTS"){
             Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
+            intent.putExtra("selectedQuizSet", selectedQuizSet);
             intent.putExtra("markScored", noOfCorrectAnswers);
             finish();
             startActivity(intent);
