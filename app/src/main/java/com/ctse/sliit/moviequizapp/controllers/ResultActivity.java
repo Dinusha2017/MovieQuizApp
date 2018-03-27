@@ -1,6 +1,7 @@
 package com.ctse.sliit.moviequizapp.controllers;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
         Button continueButton = findViewById(R.id.continueButton);
         continueButton.setOnClickListener(this);
+
+        SharedPreferences preferences = getSharedPreferences(getResources().getString(R.string.shared_pref_filename), MODE_PRIVATE);
+        preferences.edit().putInt(getResources().getString(R.string.pref_key_score), markScored).apply();
     }
 
     @Override
