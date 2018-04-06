@@ -8,7 +8,7 @@
     tools:context="com.ctse.sliit.moviequizapp.controllers.QuizLevels">
 
     <LinearLayout
-        android:layout_width="391dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="-7dp"
@@ -27,10 +27,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="230dp"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:paddingTop="55dp">
+            android:paddingTop="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
 
                 <Button
                     android:id="@+id/buttonLevel1"
-                    android:layout_width="135dp"
+                    android:layout_width="130dp"
                     android:layout_height="80dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
@@ -53,7 +53,7 @@
 
                 <Button
                     android:id="@+id/buttonLevel2"
-                    android:layout_width="135dp"
+                    android:layout_width="130dp"
                     android:layout_height="80dp"
                     android:layout_weight="2"
                     android:layout_marginRight="10dp"
@@ -61,6 +61,17 @@
                     android:textSize="25dp"
                     android:text="Level 2"
                     android:background="@color/colorLightGrey"/>
+
+                <Button
+                    android:id="@+id/buttonLevel3"
+                    android:layout_width="130dp"
+                    android:layout_height="80dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
+                    android:textSize="25dp"
+                    android:text="level 1"
+                    android:background="@color/colorLightGrey"/>
             </LinearLayout>
 
             <LinearLayout
@@ -69,23 +80,11 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:paddingBottom="5dp"
-                >
-
-                <Button
-                    android:id="@+id/buttonLevel3"
-                    android:layout_width="135dp"
-                    android:layout_height="80dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:textSize="25dp"
-                    android:text="Level 3"
-                    android:background="@color/colorLightGrey"/>
+                android:paddingBottom="5dp">
 
                 <Button
                     android:id="@+id/buttonLevel4"
-                    android:layout_width="135dp"
+                    android:layout_width="130dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
@@ -93,19 +92,10 @@
                     android:textSize="25dp"
                     android:text="Level 4"
                     android:background="@color/colorLightGrey"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:paddingBottom="2dp">
 
                 <Button
                     android:id="@+id/buttonLevel5"
-                    android:layout_width="135dp"
+                    android:layout_width="130dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -117,7 +107,7 @@
 
                 <Button
                     android:id="@+id/buttonLevel6"
-                    android:layout_width="135dp"
+                    android:layout_width="130dp"
                     android:layout_height="80dp"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
@@ -127,7 +117,6 @@
                     android:padding="1dp"
                     android:background="@color/colorLightGrey"/>
             </LinearLayout>
-
 
         </LinearLayout>
 

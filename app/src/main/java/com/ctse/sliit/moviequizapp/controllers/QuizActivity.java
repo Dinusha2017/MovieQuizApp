@@ -25,16 +25,27 @@ public class QuizActivity extends AppCompatActivity{
     private String userSelectedAnswer = "";
 
     private List<Integer> userAnswers = new ArrayList<Integer>();
+    private List<Integer> wrongAnswerQuestions = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        //get quiz set selected by user
-        selectedQuizSet = getIntent().getExtras().getInt("selectedQuizSet");
+        if (savedInstanceState != null) {
+            selectedQuizSet = savedInstanceState.getInt("selectedQuizSet");
+            currentDBQuestion = savedInstanceState.getInt("currentDBQuestion");
+            currentQuestionNo = savedInstanceState.getInt("currentQuestionNo");
+            noOfCorrectAnswers = savedInstanceState.getInt("noOfCorrectAnswers");
+            userAnswers = savedInstanceState.getIntegerArrayList("userAnswers");
+            wrongAnswerQuestions = savedInstanceState.getIntegerArrayList("wrongAnswerQuestions");
+        }
+        else {
+            //get quiz set selected by user
+            selectedQuizSet = getIntent().getExtras().getInt("selectedQuizSet");
 
-        currentDBQuestion = Integer.parseInt(Integer.toString(selectedQuizSet) + "1");
+            currentDBQuestion = Integer.parseInt(Integer.toString(selectedQuizSet) + "1");
+        }
 
         updateUIWithNextQuestion(false);
     }
@@ -87,31 +98,31 @@ public class QuizActivity extends AppCompatActivity{
             int buttonNo = userAnswers.get(currentQuestionNo-1);
 
             if(buttonNo == 1){
-                answer1.setBackgroundColor(Color.YELLOW);
-                answer2.setBackgroundColor(Color.GRAY);
-                answer3.setBackgroundColor(Color.GRAY);
-                answer4.setBackgroundColor(Color.GRAY);
+                answer1.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+                answer2.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer3.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer4.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
                 userSelectedAnswer = answer1.getText().toString();
             }
             else if(buttonNo == 2){
-                answer2.setBackgroundColor(Color.YELLOW);
-                answer1.setBackgroundColor(Color.GRAY);
-                answer3.setBackgroundColor(Color.GRAY);
-                answer4.setBackgroundColor(Color.GRAY);
+                answer2.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+                answer1.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer3.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer4.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
                 userSelectedAnswer = answer2.getText().toString();
             }
             else if(buttonNo == 3){
-                answer3.setBackgroundColor(Color.YELLOW);
-                answer1.setBackgroundColor(Color.GRAY);
-                answer2.setBackgroundColor(Color.GRAY);
-                answer4.setBackgroundColor(Color.GRAY);
+                answer3.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+                answer1.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer2.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer4.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
                 userSelectedAnswer = answer3.getText().toString();
             }
             else if(buttonNo == 4){
-                answer4.setBackgroundColor(Color.YELLOW);
-                answer1.setBackgroundColor(Color.GRAY);
-                answer2.setBackgroundColor(Color.GRAY);
-                answer3.setBackgroundColor(Color.GRAY);
+                answer4.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+                answer1.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer2.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+                answer3.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
                 userSelectedAnswer = answer4.getText().toString();
             }
 
@@ -122,10 +133,10 @@ public class QuizActivity extends AppCompatActivity{
             nextBtn.setEnabled(true);
         }
         else{
-            answer1.setBackgroundColor(Color.GRAY);
-            answer2.setBackgroundColor(Color.GRAY);
-            answer3.setBackgroundColor(Color.GRAY);
-            answer4.setBackgroundColor(Color.GRAY);
+            answer1.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+            answer2.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+            answer3.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+            answer4.setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
             nextBtn.setEnabled(false);
         }
     }
@@ -138,10 +149,10 @@ public class QuizActivity extends AppCompatActivity{
     public void onClickAnswer1(View view){
         Button btn = (Button)view;
         userSelectedAnswer = btn.getText().toString();
-        btn.setBackgroundColor(Color.YELLOW);   //getResources().getColor(R.color.colorAccent)
-        ((Button)findViewById(R.id.answer2)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer3)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer4)).setBackgroundColor(Color.GRAY);
+        btn.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+        ((Button)findViewById(R.id.answer2)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer3)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer4)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
         storeUserAnswerButton(1);
     }
@@ -154,10 +165,10 @@ public class QuizActivity extends AppCompatActivity{
     public void onClickAnswer2(View view){
         Button btn = (Button)view;
         userSelectedAnswer = btn.getText().toString();
-        btn.setBackgroundColor(Color.YELLOW);   //getResources().getColor(R.color.colorAccent)
-        ((Button)findViewById(R.id.answer1)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer3)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer4)).setBackgroundColor(Color.GRAY);
+        btn.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+        ((Button)findViewById(R.id.answer1)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer3)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer4)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
         storeUserAnswerButton(2);
     }
@@ -170,10 +181,10 @@ public class QuizActivity extends AppCompatActivity{
     public void onClickAnswer3(View view){
         Button btn = (Button)view;
         userSelectedAnswer = btn.getText().toString();
-        btn.setBackgroundColor(Color.YELLOW);   //getResources().getColor(R.color.colorAccent)
-        ((Button)findViewById(R.id.answer1)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer2)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer4)).setBackgroundColor(Color.GRAY);
+        btn.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+        ((Button)findViewById(R.id.answer1)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer2)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer4)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
         storeUserAnswerButton(3);
     }
@@ -186,10 +197,10 @@ public class QuizActivity extends AppCompatActivity{
     public void onClickAnswer4(View view){
         Button btn = (Button)view;
         userSelectedAnswer = btn.getText().toString();
-        btn.setBackgroundColor(Color.YELLOW);   //getResources().getColor(R.color.colorAccent)
-        ((Button)findViewById(R.id.answer1)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer2)).setBackgroundColor(Color.GRAY);
-        ((Button)findViewById(R.id.answer3)).setBackgroundColor(Color.GRAY);
+        btn.setBackgroundColor(getResources().getColor(R.color.answerButtonGold));
+        ((Button)findViewById(R.id.answer1)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer2)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
+        ((Button)findViewById(R.id.answer3)).setBackgroundColor(getResources().getColor(R.color.colorLightGrey));
         ((Button)findViewById(R.id.nextButton)).setEnabled(true);
         storeUserAnswerButton(4);
     }
@@ -204,12 +215,22 @@ public class QuizActivity extends AppCompatActivity{
 
         if (checkAnswer()){
             noOfCorrectAnswers++;
+
+            if (wrongAnswerQuestions.contains(currentDBQuestion)) {
+                wrongAnswerQuestions.remove(Integer.valueOf(currentDBQuestion));
+            }
+        }
+        else{
+            if (!wrongAnswerQuestions.contains(currentDBQuestion)) {
+                wrongAnswerQuestions.add(currentDBQuestion);
+            }
         }
 
         if (btn.getText() == "VIEW RESULTS"){
             Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
             intent.putExtra("selectedQuizSet", selectedQuizSet);
             intent.putExtra("markScored", noOfCorrectAnswers);
+            intent.putIntegerArrayListExtra("wronglyAnsweredQuestionIds", (ArrayList<Integer>) wrongAnswerQuestions);
             finish();
             startActivity(intent);
         }
@@ -258,5 +279,16 @@ public class QuizActivity extends AppCompatActivity{
         currentDBQuestion--;
         currentQuestionNo--;
         updateUIWithNextQuestion(true);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("selectedQuizSet", selectedQuizSet);
+        outState.putInt("currentDBQuestion", currentDBQuestion);
+        outState.putInt("currentQuestionNo", currentQuestionNo);
+        outState.putInt("noOfCorrectAnswers", noOfCorrectAnswers);
+        outState.putIntegerArrayList("userAnswers", (ArrayList<Integer>) userAnswers);
+        outState.putIntegerArrayList("wrongAnswerQuestions", (ArrayList<Integer>) wrongAnswerQuestions);
     }
 }

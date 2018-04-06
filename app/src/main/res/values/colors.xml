@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#004D40</color>
+    <color name="colorPrimaryDark">#004338</color>
+    <color name="colorAccent">#FFEA00</color>
+    <color name="colorLightGrey">#E0E0E0</color>
+    <color name="customColorForBackground">#00695C</color>
+    <color name="buttonColorLevel">#CDDC39</color>
+    <color name="answerButtonGold">#FFD600</color>
+    <color name="levelButtonLightCoral">#ffc36a</color>
+    <color name="playButtonGreen">#ffc36a</color>
+    <color name="answerButtonPink">#F48FB1</color>
 </resources>
